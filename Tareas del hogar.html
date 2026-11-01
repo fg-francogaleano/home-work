@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tareas del hogar</title>
+<style>
+:root{--bg:#f5f6f8;--cd:#fff;--tx:#1b2330;--mu:#6a7585;--bd:#e2e6ec;--ac:#2f5bea;--hi:#e5484d;--md:#e08a00;--lo:#2b9a66;--sf:#eef1f6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11151b;--cd:#1a2029;--tx:#e8ecf2;--mu:#8e99a9;--bd:#2a323e;--ac:#6d8cff;--hi:#ff6b70;--md:#f5b041;--lo:#4cc38a;--sf:#232b36;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#11151b;--cd:#1a2029;--tx:#e8ecf2;--mu:#8e99a9;--bd:#2a323e;--ac:#6d8cff;--hi:#ff6b70;--md:#f5b041;--lo:#4cc38a;--sf:#232b36;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--cd);border-bottom:1px solid var(--bd);display:flex;gap:6px;align-items:center;padding:10px 14px;flex-wrap:wrap}
+header b{margin-right:10px;font-size:16px}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+button,select,input,textarea{font:inherit;color:var(--tx)}
+.nv{border:0;background:none;padding:7px 12px;border-radius:8px;cursor:pointer;color:var(--mu)}
+.nv.on{background:var(--sf);color:var(--ac);font-weight:600}
+main{max-width:1100px;margin:0 auto;padding:16px 14px 60px}
+h2{margin:6px 0 14px;font-size:20px}h3{margin:18px 0 8px;font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+.card{background:var(--cd);border:1px solid var(--bd);border-radius:12px;padding:14px}
+.k{color:var(--mu);font-size:12.5px}.v{font-size:22px;font-weight:700;margin-top:2px}
+.btn{border:1px solid var(--bd);background:var(--cd);padding:7px 12px;border-radius:8px;cursor:pointer}
+.btn.p{background:var(--ac);border-color:var(--ac);color:#fff;font-weight:600}
+.btn.s{padding:4px 8px;font-size:13px}.btn.d{color:var(--hi)}
+.bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.bar .sp{flex:1}
+.tw{overflow-x:auto;background:var(--cd);border:1px solid var(--bd);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:760px}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--bd);vertical-align:middle}
+th{font-size:12.5px;color:var(--mu);cursor:pointer;white-space:nowrap;user-select:none}tr:last-child td{border:0}
+td select,td input{background:var(--sf);border:1px solid transparent;border-radius:6px;padding:3px 6px;max-width:140px}
+td input[type=number]{width:110px}
+.tag{display:inline-block;padding:2px 9px;border-radius:99px;font-size:12px;font-weight:600;background:var(--sf)}
+.Alta{color:var(--hi)}.Media{color:var(--md)}.Baja{color:var(--lo)}
+.done td:nth-child(2){text-decoration:line-through;color:var(--mu)}
+dialog{border:1px solid var(--bd);border-radius:14px;background:var(--cd);color:var(--tx);width:min(480px,94vw);padding:18px}
+dialog::backdrop{background:#0008}
+label{display:block;font-size:12.5px;color:var(--mu);margin:10px 0 3px}
+.f input,.f select,.f textarea{width:100%;background:var(--sf);border:1px solid var(--bd);border-radius:8px;padding:8px}
+.er{color:var(--hi);font-size:12.5px;min-height:16px;margin-top:6px}
+.ft{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.it{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--bd);flex-wrap:wrap}
+.it:last-child{border:0}
+.st-late{color:var(--hi)}.st-now{color:var(--ac)}.st-soon{color:var(--md)}.st-done{color:var(--lo)}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cal .h{font-size:12px;color:var(--mu);text-align:center}
+.cl{min-height:74px;background:var(--cd);border:1px solid var(--bd);border-radius:8px;padding:3px;overflow:hidden}
+.cl.o{opacity:.45}.cl.t{border-color:var(--ac)}
+.cl small{color:var(--mu)}
+.ch{display:block;font-size:11px;background:var(--sf);border-left:3px solid var(--ac);padding:1px 4px;margin-top:2px;border-radius:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pg{height:10px;background:var(--sf);border-radius:9px;overflow:hidden}.pg i{display:block;height:100%;background:var(--lo)}
+.mu{color:var(--mu)}
+</style></head><body>
+<header><b>🏠 Mi casa</b><nav id="nav"></nav><span class="sp" style="flex:1"></span></header>
+<main id="m"></main>
+<dialog id="dg"></dialog>
+<script>
+const KEY='hogar.v1',PR=['Alta','Media','Baja'],CO=['Bajo','Medio','Alto'],ST=['Pendiente','En planificación','En curso','Finalizada','Cancelada'];
+const VIEWS=[['dash','Dashboard'],['tasks','Tareas del hogar'],['sched','Cronograma'],['bud','Presupuesto']];
+const seed=`Pintar ventana pieza nuestra|Media|Medio
+Pintar ventana pieza de los chicos|Media|Medio
+Pintar marco de puerta de los chicos|Media|Medio
+Pintar marco de puerta pieza nuestra|Baja|Medio
+Pintar marco de puerta del baño|Baja|Medio
+Pintar marco de placar|Baja|Medio
+Pintar puerta entrada|Alta|Bajo
+Arreglar humedad pieza nuestra|Media|Medio
+Arreglar humedad frente de la casa, donde comienza la escalera|Alta|Bajo
+Arreglar foco de humedad comedor en la parte superior|Alta|Medio
+Enduir pieza de los chicos|Media|Medio
+Pintar pieza de los chicos|Media|Alto
+Pintar nuestra pieza|Media|Alto
+Poner cerradura pieza de los chicos|Media|Medio
+Arreglar cerradura de puerta de entrada|Alta|Bajo
+Pintar puerta de entrada|Alta|Bajo
+Pintar comedor|Alta|Alto
+Tapizar sillas|Alta|Medio
+Pintar patas de mesa|Alta|Bajo
+Mandar a soldar orificios para agarrar la mesa con tornillos|Alta|Bajo
+Arreglar cerradura puerta de entrada / comprar una|Alta|Medio`;
+let S,view='dash',sortK='auto',sortD=1,flt='',vmode='list',cm=new Date();cm.setDate(1);
+const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const uid=()=>Math.random().toString(36).slice(2,9);
+function load(){try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}
+ if(!S||!S.tasks){S={tasks:seed.split('\n').map(l=>{const[a,b,c]=l.split('|');return{id:uid(),desc:a,prio:b,cost:c,amount:0,status:'Pendiente',notes:'',created:today()}}),plans:[]};save()}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const money=n=>'$'+Math.round(n||0).toLocaleString('es-AR');
+const fd=s=>s?s.split('-').reverse().join('/'):'—';
+const opts=(a,v)=>a.map(x=>`<option${x===v?' selected':''}>${x}</option>`).join('');
+const rank=t=>PR.indexOf(t.prio)*3+CO.indexOf(t.cost);
+const closed=t=>t.status==='Finalizada'||t.status==='Cancelada';
+const task=id=>S.tasks.find(t=>t.id===id);
+const planOf=id=>S.plans.find(p=>p.taskId===id);
+function sorted(){let a=S.tasks.filter(t=>!flt||t.status===flt);
+ if(sortK==='auto')return a.sort((x,y)=>closed(x)-closed(y)||rank(x)-rank(y)||x.amount-y.amount);
+ return a.sort((x,y)=>{let p=x[sortK],q=y[sortK];if(sortK==='prio'){p=PR.indexOf(p);q=PR.indexOf(q)}if(sortK==='cost'){p=CO.indexOf(p);q=CO.indexOf(q)}if(sortK==='status'){p=ST.indexOf(p);q=ST.indexOf(q)}
+  return(typeof p==='number'?p-q:String(p).localeCompare(q))*sortD})}
+function pstate(p){const t=task(p.taskId),n=today();
+ if(t.status==='Finalizada')return['done','Finalizada'];if(t.status==='Cancelada')return['done','Cancelada'];
+ if(p.end<n)return['late','Vencida'];if(p.start<=n||t.status==='En curso')return['now','En ejecución'];
+ const d=(new Date(p.start)-new Date(n))/864e5;return d<=7?['soon','Próxima a comenzar']:['','Pendiente de ejecución']}
+function dlg(h){const d=$('#dg');d.innerHTML=h;if(!d.open)d.showModal();return d}
+const close=()=>$('#dg').close();
+function render(){
+ $('#nav').innerHTML=VIEWS.map(([k,n])=>`<button class="nv${k===view?' on':''}" data-v="${k}">${n}</button>`).join('');
+ $('#m').innerHTML=({dash,tasks,sched,bud})[view]()}
+function stats(){const T=S.tasks,A=T.filter(t=>t.status!=='Cancelada'),sum=a=>a.reduce((s,t)=>s+(+t.amount||0),0);
+ const planned=S.plans.filter(p=>task(p.taskId)&&task(p.taskId).status!=='Cancelada').reduce((s,p)=>s+(+p.budget||0),0);
+ return{n:T.length,pen:T.filter(t=>t.status==='Pendiente'||t.status==='En planificación').length,cur:T.filter(t=>t.status==='En curso').length,fin:T.filter(t=>t.status==='Finalizada').length,
+  alta:T.filter(t=>t.prio==='Alta'&&!closed(t)).length,tot:sum(A),planned,done:sum(T.filter(t=>t.status==='Finalizada'))}}
+function dash(){const s=stats();
+ const c=(k,v)=>`<div class="card"><div class="k">${k}</div><div class="v">${v}</div></div>`;
+ const al=S.plans.map(p=>[p,pstate(p)]).filter(x=>['late','now','soon'].includes(x[1][0])).sort((a,b)=>a[0].start.localeCompare(b[0].start));
+ return`<h2>Dashboard</h2><div class="grid">${c('Tareas registradas',s.n)}${c('Pendientes',s.pen)}${c('En curso',s.cur)}${c('Finalizadas',s.fin)}${c('Prioridad alta (abiertas)',s.alta)}${c('Presupuesto total estimado',money(s.tot))}${c('Presupuesto planificado',money(s.planned))}${c('Costo de trabajos finalizados',money(s.done))}</div>
+ <h3>Atención en el cronograma</h3><div class="card" style="padding:0">${al.length?al.map(([p,st])=>`<div class="it"><span>${esc(task(p.taskId).desc)}</span><span class="st-${st[0]}">${st[1]} · ${fd(p.start)} → ${fd(p.end)}</span></div>`).join(''):'<div class="it mu">Nada urgente. Planificá tareas desde “Tareas del hogar”.</div>'}</div>`}
+function tasks(){const rows=sorted(),th=(k,n)=>`<th data-s="${k}">${n}${sortK===k?(sortD>0?' ▲':' ▼'):''}</th>`;
+ return`<h2>Tareas del hogar</h2><div class="bar"><button class="btn p" data-a="add">+ Agregar tarea</button>
+ <select id="flt" class="btn"><option value="">Todos los estados</option>${opts(ST,flt)}</select>
+ <button class="btn" data-a="auto">${sortK==='auto'?'✓ Orden automático':'Volver a orden automático'}</button><span class="sp"></span><span class="mu">${rows.length} tareas</span></div>
+ <div class="tw"><table><tr><th>#</th>${th('desc','Descripción')}${th('prio','Prioridad')}${th('cost','Nivel de costo')}${th('amount','Costo estimado (ARS)')}${th('status','Estado')}<th></th></tr>
+ ${rows.map((t,i)=>`<tr class="${closed(t)?'done':''}" data-id="${t.id}"><td class="mu">${i+1}</td><td>${esc(t.desc)}${t.notes?`<div class="mu" style="font-size:12.5px">${esc(t.notes)}</div>`:''}</td>
+ <td><select class="${t.prio}" data-f="prio">${opts(PR,t.prio)}</select></td><td><select data-f="cost">${opts(CO,t.cost)}</select></td>
+ <td><input type="number" min="0" step="1000" value="${t.amount||''}" placeholder="0" data-f="amount"></td><td><select data-f="status">${opts(ST,t.status)}</select></td>
+ <td style="white-space:nowrap"><button class="btn s" data-a="plan">${planOf(t.id)?'📅 Replanificar':'📅 Planificar'}</button> <button class="btn s" data-a="edit">Editar</button> <button class="btn s d" data-a="del">Eliminar</button></td></tr>`).join('')||'<tr><td colspan="7" class="mu">Sin tareas.</td></tr>'}</table></div>`}
+function sched(){const P=S.plans.filter(p=>task(p.taskId)).sort((a,b)=>a.start.localeCompare(b.start));
+ const tabs=[['list','Lista'],['month','Mensual'],['cal','Calendario']].map(([k,n])=>`<button class="btn${vmode===k?' p':''}" data-m="${k}">${n}</button>`).join('');
+ let body='';
+ const item=p=>{const t=task(p.taskId),st=pstate(p);return`<div class="it" data-id="${t.id}"><div><b>${esc(t.desc)}</b><div class="mu" style="font-size:12.5px">${fd(p.start)} → ${fd(p.end)} · ${p.dur} día(s) · ${money(p.budget)}${p.notes?' · '+esc(p.notes):''}</div></div>
+ <div><span class="tag st-${st[0]}">${st[1]}</span> ${t.status!=='Finalizada'?'<button class="btn s" data-a="fin">✓ Finalizar</button> ':''}<button class="btn s" data-a="plan">Fechas</button> <button class="btn s d" data-a="unplan">Quitar</button></div></div>`};
+ if(!P.length)body='<div class="card mu">Todavía no planificaste nada. En “Tareas del hogar” usá el botón Planificar.</div>';
+ else if(vmode==='list')body=`<div class="card" style="padding:0">${P.map(item).join('')}</div>`;
+ else if(vmode==='month'){const g={};P.forEach(p=>(g[p.start.slice(0,7)]=g[p.start.slice(0,7)]||[]).push(p));
+  body=Object.keys(g).sort().map(k=>{const[y,m]=k.split('-');const nm=new Date(y,m-1,1).toLocaleDateString('es-AR',{month:'long',year:'numeric'});
+  return`<h3 style="text-transform:capitalize">${nm} · ${g[k].length} tarea(s) · ${money(g[k].reduce((s,p)=>s+(+p.budget||0),0))}</h3><div class="card" style="padding:0">${g[k].map(item).join('')}</div>`}).join('')}
+ else{const y=cm.getFullYear(),m=cm.getMonth(),off=(new Date(y,m,1).getDay()+6)%7,n=new Date(y,m+1,0).getDate(),tn=today();let cells='';
+  for(let i=0;i<Math.ceil((off+n)/7)*7;i++){const d=new Date(y,m,1-off+i),iso=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+   const ps=P.filter(p=>p.start<=iso&&iso<=p.end);cells+=`<div class="cl${d.getMonth()!==m?' o':''}${iso===tn?' t':''}"><small>${d.getDate()}</small>${ps.map(p=>`<span class="ch" title="${esc(task(p.taskId).desc)}">${esc(task(p.taskId).desc)}</span>`).join('')}</div>`}
+  body=`<div class="bar"><button class="btn" data-a="pm">‹</button><b style="text-transform:capitalize">${cm.toLocaleDateString('es-AR',{month:'long',year:'numeric'})}</b><button class="btn" data-a="nm">›</button></div><div class="cal">${['L','M','M','J','V','S','D'].map(x=>`<div class="h">${x}</div>`).join('')}${cells}</div>`}
+ return`<h2>Cronograma</h2><div class="bar">${tabs}</div>${body}`}
+function bud(){const s=stats(),pct=s.tot?Math.min(100,s.done/s.tot*100):0;
+ const row=p=>{const a=S.tasks.filter(t=>t.prio===p&&t.status!=='Cancelada'),ids=a.map(t=>t.id);
+  return`<tr><td class="${p}"><b>${p}</b></td><td>${a.length}</td><td>${money(a.reduce((x,t)=>x+(+t.amount||0),0))}</td><td>${money(S.plans.filter(q=>ids.includes(q.taskId)).reduce((x,q)=>x+(+q.budget||0),0))}</td><td>${money(a.filter(t=>t.status==='Finalizada').reduce((x,t)=>x+(+t.amount||0),0))}</td></tr>`};
+ return`<h2>Presupuesto</h2><div class="grid"><div class="card"><div class="k">Estimado</div><div class="v">${money(s.tot)}</div></div><div class="card"><div class="k">Planificado</div><div class="v">${money(s.planned)}</div></div><div class="card"><div class="k">Ejecutado</div><div class="v">${money(s.done)}</div></div><div class="card"><div class="k">Restante por ejecutar</div><div class="v">${money(s.tot-s.done)}</div></div></div>
+ <h3>Avance de ejecución · ${Math.round(pct)}%</h3><div class="pg"><i style="width:${pct}%"></i></div>
+ <h3>Por prioridad</h3><div class="tw"><table><tr><th>Prioridad</th><th>Tareas</th><th>Estimado</th><th>Planificado</th><th>Ejecutado</th></tr>${PR.map(row).join('')}</table></div>
+ <p class="mu" style="font-size:12.5px">Los montos salen de la columna “Costo estimado” (las tareas canceladas no suman). Cargalos en Tareas del hogar.</p>`}
+function taskForm(id){const t=id?task(id):{desc:'',prio:'Media',cost:'Medio',amount:'',status:'Pendiente',notes:''};
+ dlg(`<form class="f" id="tf" method="dialog"><h3 style="margin-top:0">${id?'Editar':'Nueva'} tarea</h3>
+ <label>Descripción</label><input name="desc" value="${esc(t.desc)}">
+ <div class="row2"><div><label>Prioridad</label><select name="prio">${opts(PR,t.prio)}</select></div><div><label>Nivel de costo</label><select name="cost">${opts(CO,t.cost)}</select></div></div>
+ <div class="row2"><div><label>Costo estimado (ARS)</label><input name="amount" type="number" min="0" value="${t.amount||''}"></div><div><label>Estado</label><select name="status">${opts(ST,t.status)}</select></div></div>
+ <label>Observaciones</label><textarea name="notes" rows="2">${esc(t.notes)}</textarea><div class="er" id="er"></div>
+ <div class="ft"><button type="button" class="btn" data-a="x">Cancelar</button><button class="btn p">Guardar</button></div></form>`);
+ $('#tf').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target),d=f.get('desc').trim(),a=f.get('amount');
+  if(d.length<3)return $('#er').textContent='La descripción debe tener al menos 3 caracteres.';
+  if(a!==''&&(isNaN(a)||+a<0))return $('#er').textContent='El costo debe ser un número positivo.';
+  const o={desc:d,prio:f.get('prio'),cost:f.get('cost'),amount:+a||0,status:f.get('status'),notes:f.get('notes').trim()};
+  if(id)Object.assign(task(id),o);else S.tasks.push({id:uid(),created:today(),...o});save();close();render()}}
+function planForm(id){const t=task(id),p=planOf(id)||{start:today(),end:today(),budget:t.amount||0,notes:''};
+ dlg(`<form class="f" id="pf" method="dialog"><h3 style="margin-top:0">Planificar tarea</h3><div class="mu">${esc(t.desc)}</div>
+ <div class="row2"><div><label>Fecha de inicio</label><input name="start" type="date" value="${p.start}"></div><div><label>Fin estimado</label><input name="end" type="date" value="${p.end}"></div></div>
+ <div class="mu" id="du" style="margin-top:6px"></div><label>Presupuesto asignado (ARS)</label><input name="budget" type="number" min="0" value="${p.budget||''}">
+ <label>Observaciones</label><textarea name="notes" rows="2">${esc(p.notes)}</textarea><div class="er" id="er"></div>
+ <div class="ft"><button type="button" class="btn" data-a="x">Cancelar</button><button class="btn p">Guardar</button></div></form>`);
+ const dur=(a,b)=>Math.round((new Date(b)-new Date(a))/864e5)+1,upd=()=>{const f=new FormData($('#pf'));const d=dur(f.get('start'),f.get('end'));$('#du').textContent=d>0?'Duración: '+d+' día(s)':''};
+ $('#pf').oninput=upd;upd();
+ $('#pf').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target),s=f.get('start'),en=f.get('end');
+  if(!s||!en)return $('#er').textContent='Indicá fecha de inicio y de fin.';
+  if(en<s)return $('#er').textContent='El fin no puede ser anterior al inicio.';
+  const o={taskId:id,start:s,end:en,dur:dur(s,en),budget:+f.get('budget')||0,notes:f.get('notes').trim()};
+  const ex=planOf(id);if(ex)Object.assign(ex,o);else S.plans.push(o);
+  if(t.status==='Pendiente')t.status='En planificación';save();close();render()}}
+function ask(msg,fn){dlg(`<h3 style="margin-top:0">Confirmar</h3><p>${msg}</p><div class="ft"><button class="btn" data-a="x">Cancelar</button><button class="btn p" id="ok">Aceptar</button></div>`);$('#ok').onclick=()=>{fn();save();close();render()}}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-v],[data-s],[data-a],[data-m]');if(!b)return;
+ const id=(b.closest('[data-id]')||{}).dataset?.id,D=b.dataset;
+ if(D.v){view=D.v;render()}else if(D.m){vmode=D.m;render()}
+ else if(D.s){if(sortK===D.s)sortD*=-1;else{sortK=D.s;sortD=1}render()}
+ else if(D.a==='x')close();else if(D.a==='add')taskForm();else if(D.a==='edit')taskForm(id);else if(D.a==='plan')planForm(id);
+ else if(D.a==='auto'){sortK='auto';sortD=1;render()}
+ else if(D.a==='del')ask('¿Eliminar la tarea “'+esc(task(id).desc)+'”? También se quitará de la planificación.',()=>{S.tasks=S.tasks.filter(t=>t.id!==id);S.plans=S.plans.filter(p=>p.taskId!==id)});
+ else if(D.a==='unplan')ask('¿Quitar esta tarea del cronograma?',()=>{S.plans=S.plans.filter(p=>p.taskId!==id)});
+ else if(D.a==='fin'){task(id).status='Finalizada';save();render()}
+ else if(D.a==='pm'){cm.setMonth(cm.getMonth()-1);render()}else if(D.a==='nm'){cm.setMonth(cm.getMonth()+1);render()}});
+document.addEventListener('change',e=>{const el=e.target;if(el.id==='flt'){flt=el.value;return render()}
+ const f=el.dataset.f,tr=el.closest('tr[data-id]');if(!f||!tr)return;const t=task(tr.dataset.id);t[f]=f==='amount'?Math.max(0,+el.value||0):el.value;
+ const p=planOf(t.id);if(f==='amount'&&p&&!p.budget)p.budget=t.amount;save();render()});
+load();render();
+</script></body></html>
